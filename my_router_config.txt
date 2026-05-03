@@ -1,0 +1,13 @@
+hostname Lab-Router-01
+!
+interface GigabitEthernet 0/0/1
+ ip address 192.168.1.50 255.255.255.0
+ no shutdown
+!
+username admin privilege 15 secret Cisco123
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+end

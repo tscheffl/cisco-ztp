@@ -6,7 +6,9 @@ In diesem Projekt wird eine Lösung für einfaches Zero-Touch-Provisioning von C
 * **dnsmasq** DHCP-Server
 * **tio** Zugriff auf serielle Schnittstellen
 
-**Wichtig:** Der Router darf keine Startup-Config besitzen (erase startup). Weiterhin darf das Konfigurationsregister nicht auf `0x2142` (ignore startup) stehen.
+**Wichtig:** Der Router darf keine Startup-Config besitzen (`Router# erase startup`). Weiterhin darf das Konfigurationsregister nicht auf `0x2142` (Startup-Config ignorieren) stehen.
+
+**Status (3.5.26):** Auslieferung per Python Script funktioniert, der Router wird initial konfiguriert. Allerdings befindet er sich danach immer noch im Day0 Modus. Die Auslieferung per Config-Datei hat nicht funktioniert. Der Router fragt die Config-Datei nicht per HTTP ab, sondern versucht eine TFTP Verbindung aufzubauen.
 
 ## Flask
 
@@ -34,4 +36,4 @@ Für den Zugriff auf die Cisco Console empfielt sich [tio](https://github.com/ti
 
 * Anzeige der devices: `tio --list`  
 * Verbinden: `tio --baudrate 9600 /dev/cu.usbserial-FTF8T2BZ`
-* Verbindung trennen: ctrl-t q
+* Verbindung trennen: `ctrl-t q`

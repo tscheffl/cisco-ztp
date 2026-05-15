@@ -3,9 +3,9 @@ import urllib.request
 import re
 
 def get_serial():
-    # Führt den Cisco-Befehl aus
+    # Cisco-Befehl ausfuehren
     inventory = cli.execute("show inventory")
-    # Sucht nach der Seriennummer (RegEx)
+    # Nach der Seriennummer (RegEx) suchen
     match = re.search(r'SN:\s+(\w+)', inventory)
     return match.group(1) if match else None
 
@@ -18,7 +18,7 @@ def main():
     print(f"Geraet erkannt: {sn}. Fordere Config an...")
     
     # URL zum Flask-Server (IP deines Macs anpassen!)
-    url = f"http://192.168.1.100/get_final_config/{sn}"
+    url = f"http://192.168.1.100:5000/get_final_config/{sn}"
     
     try:
         response = urllib.request.urlopen(url)

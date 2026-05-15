@@ -5,6 +5,7 @@ app = Flask(__name__)
 # Einfache Router-Datenbank
 DEVICES = {
     "FCZ2944R08Q": {"hostname": "Berlin-Edge-01", "mgmt_ip": "192.168.1.10"},
+    "FCZ2944R08A": {"hostname": "HTW-Edge-01", "mgmt_ip": "192.168.1.1"},
     "SN67890DEF": {"hostname": "Hamburg-Branch-02", "mgmt_ip": "192.168.1.11"}
 }
 
@@ -40,7 +41,8 @@ def get_config(sn):
         with app.app_context():
             return render_template('cisco_config.j2', **device), 200, {'Content-Type': 'text/plain'}
     else:
+        print(f"*****\nEs wurde keine Konfiguration für {sn} gefunden! \nBitte Device in der Datenbank ergaenzen!\n*****")
         return "Device unknown", 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)

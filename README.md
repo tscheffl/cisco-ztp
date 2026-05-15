@@ -27,13 +27,15 @@ Es ist wichtig, dass die ausgelieferte URL mit der URL in der Konfiguration des 
 
 Der DHCP-Server kann mit `homebrew` auf MacOS installiert werden.
 Im Verzeichnis `etc` befindet sich eine Beispielkonfiguration. Diese kann beim Aufruf von `dnsmasq` mit `-C` angegeben werden.
+Die Option `-d` started den Debug-Modus im Vordergrund. Dadurch kann die Anwendung mit `Ctrl-C` abgebrochen werden. Die Option `-p0` startet nur den DHCP-Server und nicht den DNS-Server. 
 
-`sudo /opt/homebrew/opt/dnsmasq/sbin/dnsmasq --keep-in-foreground -C /opt/homebrew/etc/dnsmasq-ztp.conf`
+`sudo /opt/homebrew/sbin/dnsmasq -d -p0 -C ./etc/dnsmasq-ztp.conf`
 
 ## tio - Serial Terminal
 
 Für den Zugriff auf die Cisco Console empfielt sich [tio](https://github.com/tio/tio):
 
 * Anzeige der devices: `tio --list`  
-* Verbinden: `tio --baudrate 9600 /dev/cu.usbserial-FTF8T2BZ`
+* Verbinden (Mac): `tio --baudrate 9600 /dev/cu.usbserial-FTF8T2BZ`
+* Verbinden (Linux): `tio -b 9600 /dev/ttyS0`
 * Verbindung trennen: `ctrl-t q`
